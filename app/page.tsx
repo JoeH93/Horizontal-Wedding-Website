@@ -1,44 +1,42 @@
-'use client'
+"use client"
+import { Suspense, useEffect } from "react";
+import NavHorizontal from "@/components/Navbar/NavHorizontal";
 import BackgroundSlideshow from "@/components/BackgroundSlideShow/BackGroundSlideShow";
-import Nav from "@/components/Navbar/Nav";
+import HorizontalScrollContainer from "@/components/HorizontalScrollContainer";
+import GallerySection1 from "@/components/Pages/GallerySection1";
+import GallerySection2 from "@/components/Pages/GallerySection2";
+import GallerySection3 from "@/components/Pages/GallerySection3";
+import GallerySection5 from "@/components/Pages/GallerySection5";
+import GallerySection6 from "@/components/Pages/GallerySection6";
+import GallerySection4 from "@/components/Pages/GallerySection4";
+import GallerySection7 from "@/components/Pages/GallerySection7";
 
-// Intro with CountDown
-import Section1 from "@/components/pages/Section1";
 
-// When and Where with locations links
-import Section2 from "@/components/pages/Section2";
-
-// Back story: How they met? when? what made it click
-import Section3 from "@/components/pages/Section3";
-
-//Custom dedicated shoutout to the guest + Reservation + Gift Registery
-import Section4 from "@/components/pages/Section4";
-
-// Frequently asked questions
-import Section5 from "@/components/pages/Section5";
-
-// Photo Uploads on Drive Section
-import Section6 from "@/components/pages/Section6";
-
-// Dedicated standalone shoutout to the guests
-import Section7 from "@/components/pages/Section7";
-
-export default function Home() {
+export default function GalleryPage() {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
-    <main className="relative">
+    <main className="relative h-screen w-screen overflow-hidden">
+    
       <BackgroundSlideshow />
- 
-      <div className="relative z-10">
-        <Nav />
-        <div className="flex flex-col gap-130 md:gap-16">
-          <Section1 />
-          <Section2 />
-          <Section4 />
-          <Section6 />
-          <Section5 />
-        </div>
-      </div>
+      <NavHorizontal />
+      
+      <HorizontalScrollContainer>
+        <GallerySection1 />
+        <GallerySection2 />
+        <GallerySection7 />
+        {/* <GallerySection3 /> */}
+        <Suspense fallback={null}>
+          <GallerySection4 />
+        </Suspense>
+        <GallerySection6 />
+        <GallerySection5 />
+      </HorizontalScrollContainer>
     </main>
   );
 }

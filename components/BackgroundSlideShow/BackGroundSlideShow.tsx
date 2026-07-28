@@ -22,6 +22,7 @@ export default function BackgroundSlideshow() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
+
       {IMAGES.map((src, i) => (
         <div
           key={src}
@@ -35,7 +36,8 @@ export default function BackgroundSlideshow() {
 
       {/* Light tint so photos aren't harsh in the gaps, while sections
           above still handle their own legibility via translucent backgrounds. */}
-      <div className="absolute inset-0 bg-[#FBF7F0]/30" />
+      <div className="absolute inset-0 bg-[#FBF7F0]/60" />
+      {/* <div className="absolute inset-0 bg-black/30" /> */}
     </div>
   );
 }
