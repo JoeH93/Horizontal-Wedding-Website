@@ -89,7 +89,7 @@ export default function GallerySection1() {
         variants={containerVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
-        className="max-w-4xl mx-auto"
+        className="max-w-4xl mx-auto mb-18"
       >
         <motion.p
           variants={itemVariants}

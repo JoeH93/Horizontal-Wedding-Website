@@ -8,7 +8,7 @@ const MAX_VISIBLE_THUMBS = 7;
 
 export default function GallerySection6() {
   const [uploaderName, setUploaderName] = useState("");
-  const { queue, addFiles, uploadAll, removeItem, hasPending } =
+  const { queue, addFiles, uploadAll, removeItem, hasPending, isUploading } =
     usePhotoQueue(uploaderName);
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
@@ -128,9 +128,15 @@ export default function GallerySection6() {
               </button>
             )}
 
-            {!hasPending && queue.length > 0 && (
-              <p className="text-xs text-[#8A9A82]">
-                All photos uploaded — thank you! 💛
+            {!hasPending && queue.length > 0 && !isUploading && (
+              <p className="text-md text-[#161616]">
+                All photos uploaded — thank you!
+              </p>
+            )}
+
+            {!hasPending && queue.length > 0 && isUploading && (
+              <p className="text-lg text-[#8A9A82] animate-pulse">
+                Uploading
               </p>
             )}
           </>

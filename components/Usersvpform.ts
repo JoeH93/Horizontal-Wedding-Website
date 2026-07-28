@@ -62,6 +62,10 @@ export function useRsvpForm() {
         throw new Error("Please enter a valid number of guests.");
       }
 
+      if (data.attending && maxAttendees && data.numberAttending > maxAttendees) {
+        throw new Error(`Maximum number of attendees is ${maxAttendees}.`);
+      }
+
       const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

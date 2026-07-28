@@ -11,6 +11,7 @@ export type QueueItem = {
 };
 
 export function usePhotoQueue(uploaderName: string) {
+  const [isUploading, setIsUploading] = useState(false);
   const [queue, setQueue] = useState<QueueItem[]>([]);
 
   function addFiles(fileList: FileList | null) {
@@ -56,6 +57,7 @@ export function usePhotoQueue(uploaderName: string) {
   }
 
   async function uploadAll() {
+    setIsUploading(true);
     const pending = queue.filter(
       (q) => q.status === "pending" || q.status === "error"
     );
@@ -66,6 +68,7 @@ export function usePhotoQueue(uploaderName: string) {
     for (const item of pending) {
       await uploadOne(item);
     }
+    setIsUploading(false);
   }
 
   function removeItem(id: string) {
@@ -76,5 +79,5 @@ export function usePhotoQueue(uploaderName: string) {
     (q) => q.status === "pending" || q.status === "error"
   );
 
-  return { queue, addFiles, uploadAll, removeItem, hasPending };
+  return { queue, addFiles, uploadAll, removeItem, hasPending, isUploading };
 }
